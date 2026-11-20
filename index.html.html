@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Таврида Стоун — Архитектура в камне</title>
+  <style>
+    :root {
+      --bg-outer: #efeae2;
+      --card-bg: #faf7f2;
+      --deep-teal: #0a3637;
+      --teal-hover: #0e4a4c;
+      --stone-border: #dfd7c8;
+      --text-dark: #1d2424;
+      --text-muted: #5b6362;
+      --accent-sand: #c8ad86;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-outer);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(10, 54, 55, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(200, 173, 134, 0.16) 0%, transparent 50%);
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border: 1px solid var(--stone-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(10, 54, 55, 0.12);
+    }
+
+    .header {
+      background: linear-gradient(145deg, #072728 0%, var(--deep-teal) 58%, #135254 100%);
+      color: #ffffff;
+      padding: 32px 24px 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 173, 134, 0.65), transparent);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-sand);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .company {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .content {
+      padding: 24px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      background: #ffffff;
+      color: var(--text-dark);
+      border: 1px solid var(--stone-border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--deep-teal);
+      box-shadow: 0 8px 20px rgba(10, 54, 55, 0.09);
+      background-color: #fcfbf8;
+    }
+
+    .link-btn.primary {
+      background-color: var(--deep-teal);
+      border-color: var(--deep-teal);
+      color: #ffffff;
+    }
+
+    .link-btn.primary:hover {
+      background-color: var(--teal-hover);
+      border-color: var(--teal-hover);
+      box-shadow: 0 10px 22px rgba(10, 54, 55, 0.22);
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(10, 54, 55, 0.08);
+      color: var(--deep-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .link-btn.primary .icon-box {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+    }
+
+    .link-label {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.25;
+      display: block;
+    }
+
+    .link-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .link-btn.primary .link-sub {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .arrow {
+      font-size: 18px;
+      opacity: 0.7;
+      margin-left: 10px;
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--stone-border);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .footer strong {
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header class="header">
+      <div class="badge">Официальные ссылки</div>
+      <h1 class="company">Таврида Стоун</h1>
+      <p class="tagline">Архитектура в камне</p>
+    </header>
+
+    <section class="content">
+      <p class="section-title">Связь и соцсети</p>
+
+      <div class="links">
+        <a class="link-btn primary" href="tel:+79787000523">
+          <span class="link-left">
+            <span class="icon-box">TEL</span>
+            <span>
+              <span class="link-label">+7 (978) 700 0523</span>
+              <span class="link-sub">Позвонить нам</span>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="link-btn" href="https://t.me/tavrida_stone92" target="_blank" rel="noopener noreferrer">
+          <span class="link-left">
+            <span class="icon-box">TG</span>
+            <span>
+              <span class="link-label">Telegram</span>
+              <span class="link-sub">Написать или открыть канал</span>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="link-btn" href="https://max.ru/join/KiXW4C1k5ILt0aSTvNbjrTlTY0YxuzwL1LvbSA7qoHg" target="_blank" rel="noopener noreferrer">
+          <span class="link-left">
+            <span class="icon-box">MAX</span>
+            <span>
+              <span class="link-label">MAX</span>
+              <span class="link-sub">Перейти в мессенджер MAX</span>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="link-btn" href="https://vk.ru/tavrida_stone92" target="_blank" rel="noopener noreferrer">
+          <span class="link-left">
+            <span class="icon-box">VK</span>
+            <span>
+              <span class="link-label">ВКонтакте</span>
+              <span class="link-sub">Сообщество и портфолио</span>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="link-btn" href="https://www.instagram.com/tavrida.stone" target="_blank" rel="noopener noreferrer">
+          <span class="link-left">
+            <span class="icon-box">IG</span>
+            <span>
+              <span class="link-label">Instagram</span>
+              <span class="link-sub">@tavrida.stone</span>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="link-btn" href="https://yandex.ru/maps/-/CXW0IV6h" target="_blank" rel="noopener noreferrer">
+          <span class="link-left">
+            <span class="icon-box">ЯК</span>
+            <span>
+              <span class="link-label">Яндекс Карты</span>
+              <span class="link-sub">Построить маршрут</span>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <footer class="footer">
+        <strong>ООО «Таврида Стоун»</strong>
+        г. Севастополь, Монастырское Шоссе, 77/1
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
